@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+/*            background-color: dimgrey;*/
+            margin: 0;
+            padding: 0;
+
+        }
+
+        #fret_board {
+            position: absolute;
+            margin: 1vh;
+            display: grid;
+            width: 15vh;
+            height: calc(98vh + 2px);
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+            grid-row-gap: 2px;
+            background-color: #898181;
+            font-size: 1.5vh;
+            font-family: sans-serif;
+        }
+
+        .position {
+            background-color: burlywood;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /*            width: 2vh;*/
+        }
+        .f0{
+            background-color: #d07272;
+
+        }
+
+        #strings {
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            display: grid;
+            margin: 1vh;
+            width: 15vh;
+            height: 98vh;
+
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            pointer-events: none;
+        }
+
+        .string {
+            background-color: black;
+            width: 1px;
+            justify-self: center;
+        }
+
+        .finger_dot {
+
+            width: 2vh;
+            height: 2vh;
+            background: white;
+            border: .1vh black solid;
+            border-radius: 1vh;
+            z-index: 200;
+            opacity: 0;
+            text-align: center;
+            line-height: 2vh;
+
+
+
+        }
+
+        input{
+            margin: 1vh 0vh 1vh 20vh;
+/*            height: 98vh;*/
+            font-size:   20vh;
+            width: calc(98vw - 20vh);
+            background: none;
+/*            border: none;*/
+            color: dimgray;
+             -webkit-text-stroke-width: 1px;
+           -webkit-text-stroke-color: white;
+
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div id="fret_board">
+
+        <div class="position n5 E f0 s1"></div>
+        <div class="position n10 A f0 s2"></div>
+        <div class="position n3 D f0 s3"></div>
+        <div class="position n8 G f0 s4"></div>
+        <div class="position n12 H f0 s5"></div>
+        <div class="position n5 E f0 s6"></div>
+
+        <div class="position n6 F f1 s1"></div>
+        <div class="position n11 A# f1 s2"></div>
+        <div class="position n4 D# f1 s3"></div>
+        <div class="position n9 G# f1 s4"></div>
+        <div class="position n1 C f1 s5"></div>
+        <div class="position n6 F f1 s6"></div>
+
+        <div class="position n7 F# f2 s1"></div>
+        <div class="position n12 H f2 s2"></div>
+        <div class="position n5 E f2 s3"></div>
+        <div class="position n10 A f2 s4"></div>
+        <div class="position n2 C# f2 s5"></div>
+        <div class="position n7 F# f2 s6"></div>
+
+        <div class="position n8 G f3 s1"></div>
+        <div class="position n1 C f3 s2"></div>
+        <div class="position n6 F f3 s3"></div>
+        <div class="position n11 A# f3 s4"></div>
+        <div class="position n3 D f3 s5"></div>
+        <div class="position n8 G f3 s6"></div>
+
+        <div class="position n9 G# f4 s1"></div>
+        <div class="position n2 C# f4 s2"></div>
+        <div class="position n7 F# f4 s3"></div>
+        <div class="position n12 H f4 s4"></div>
+        <div class="position n4 D# f4 s5"></div>
+        <div class="position n9 G# f4 s6"></div>
+
+        <div class="position n10 A f5 s1"></div>
+        <div class="position n3 D f5 s2"></div>
+        <div class="position n8 G f5 s3"></div>
+        <div class="position n1 C f5 s4"></div>
+        <div class="position n5 E f5 s5"></div>
+        <div class="position n10 A f5 s6"></div>
+
+        <div class="position n11 A# f6 s1"></div>
+        <div class="position n4 D# f6 s2"></div>
+        <div class="position n9 G# f6 s3"></div>
+        <div class="position n2 C# f6 s4"></div>
+        <div class="position n6 F f6 s5"></div>
+        <div class="position n11 A# f6 s6"></div>
+
+        <div class="position n12 H f7 s1"></div>
+        <div class="position n5 E f7 s2"></div>
+        <div class="position n10 A f7 s3"></div>
+        <div class="position n3 D f7 s4"></div>
+        <div class="position n7 F# f7 s5"></div>
+        <div class="position n12 H f7 s6"></div>
+
+        <div class="position n1 C f8 s1"></div>
+        <div class="position n6 F f8 s2"></div>
+        <div class="position n11 A# f8 s3"></div>
+        <div class="position n4 D# f8 s4"></div>
+        <div class="position n8 G f8 s5"></div>
+        <div class="position n1 C f8 s6"></div>
+
+        <div class="position n2 C# f9 s1"></div>
+        <div class="position n7 F# f9 s2"></div>
+        <div class="position n12 H f9 s3"></div>
+        <div class="position n5 E f9 s4"></div>
+        <div class="position n9 G# f9 s5"></div>
+        <div class="position n2 C# f9 s6"></div>
+
+        <div class="position n3 D f10 s1"></div>
+        <div class="position n8 G f10 s2"></div>
+        <div class="position n1 C f10 s3"></div>
+        <div class="position n6 F f10 s4"></div>
+        <div class="position n10 A f10 s5"></div>
+        <div class="position n3 D f10 s6"></div>
+
+        <div class="position n4 D# f11 s1"></div>
+        <div class="position n9 G# f11 s2"></div>
+        <div class="position n2 C# f11 s3"></div>
+        <div class="position n7 F# f11 s4"></div>
+        <div class="position n11 A# f11 s5"></div>
+        <div class="position n4 D# f11 s6"></div>
+
+        <div class="position n5 E f12 s1"></div>
+        <div class="position n10 A f12 s2"></div>
+        <div class="position n3 D f12 s3"></div>
+        <div class="position n8 G f12 s4"></div>
+        <div class="position n12 H f12 s5"></div>
+        <div class="position n5 E f12 s6"></div>
+
+    </div>
+
+
+
+    <div id="strings">
+
+        <div class="string"></div>
+        <div class="string"></div>
+        <div class="string"></div>
+        <div class="string"></div>
+        <div class="string"></div>
+        <div class="string"></div>
+
+    </div>
+
+    <input type="text" name="fname">
+
+
+
+    <script>
+        const fretConst = 17.817;
+        let remainingFretBoardLength = 192;
+        let fretDist = (remainingFretBoardLength / fretConst).toFixed(2);
+        let gridTemplateRowsString = "2vh";
+        const nodesArr = ["C", "C#", "D", "D#", "E",  "F", "F#", "G", "G#", "A", "A#", "H"]
+
+        window.onload = startScript;
+
+        function startScript() {
+
+
+            document.querySelectorAll(".position").forEach(i => {
+                var fingerDot = document.createElement("DIV");
+                fingerDot.classList.add("finger_dot");
+                i.appendChild(fingerDot);
+                fingerDot.textContent = i.classList[2];
+                //                console.log(i.classList[1]);
+
+
+            });
+
+            ///////////////////////////////////////////////////////////////////////////
+            displayNodes(["H"]);
+            function displayNodes(arr) {
+                let displStr = "";
+                for (let u = 0 ; u < arr.length; u++){
+
+                    displStr += "." + nodesToNum(arr[u]) + (u == arr.length-1 ? " " : ",");
+                }
+                console.log(displStr);
+                document.querySelectorAll(displStr).forEach(i => {
+                    i.querySelector(".finger_dot").style.opacity = "1";
+                })
+            }
+            ///////////////////////////////////////////////////////////////////////////
+            claculateFretDist();
+            document.querySelector("#fret_board").style.gridTemplateRows = gridTemplateRowsString;
+            //console.log(gridTemplateRowsString);
+        }
+
+        function claculateFretDist() {
+            for (let i = 0; i < 16; i++) {
+                gridTemplateRowsString += " calc( " + fretDist + "vh - 2px )";
+                remainingFretBoardLength -= fretDist;
+                fretDist = (remainingFretBoardLength / fretConst).toFixed(2);
+
+
+            }
+        }
+
+        function numToNodes(numKey) {
+
+            return nodesArr[numKey.substr(1) - 1];
+        }
+
+
+        function nodesToNum(theNode) {
+            for (let i = 0; i < nodesArr.length; i++) {
+                if (nodesArr[i] == theNode) {
+                    return "n" + (i + 1);
+                }
+
+            }
+        }
+    </script>
+</body>
+
+</html>
