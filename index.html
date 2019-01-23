@@ -211,7 +211,7 @@
         let remainingFretBoardLength = 192;
         let fretDist = (remainingFretBoardLength / fretConst).toFixed(2);
         let gridTemplateRowsString = "2vh";
-        const nodesArr = ["C", "C#", "D", "D#", "E",  "F", "F#", "G", "G#", "A", "A#", "H"]
+        const nodesArr = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "H"]
 
         window.onload = startScript;
 
@@ -229,22 +229,24 @@
             });
 
             ///////////////////////////////////////////////////////////////////////////
-            displayNodes(["H"]);
-            function displayNodes(arr) {
-                let displStr = "";
-                for (let u = 0 ; u < arr.length; u++){
+            displayNodes(["C","E","G"]);
 
-                    displStr += "." + nodesToNum(arr[u]) + (u == arr.length-1 ? " " : ",");
-                }
-                console.log(displStr);
-                document.querySelectorAll(displStr).forEach(i => {
-                    i.querySelector(".finger_dot").style.opacity = "1";
-                })
-            }
             ///////////////////////////////////////////////////////////////////////////
             claculateFretDist();
             document.querySelector("#fret_board").style.gridTemplateRows = gridTemplateRowsString;
             //console.log(gridTemplateRowsString);
+        }
+
+        function displayNodes(arr) {
+            let displStr = "";
+            for (let u = 0; u < arr.length; u++) {
+
+                displStr += "." + nodesToNum(arr[u]) + (u == arr.length - 1 ? " " : ",");
+            }
+            console.log(displStr);
+            document.querySelectorAll(displStr).forEach(i => {
+                i.querySelector(".finger_dot").style.opacity = "1";
+            })
         }
 
         function claculateFretDist() {
