@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+    <html lang="">
 
 <head>
     <meta charset="utf-8">
@@ -7,7 +7,7 @@
     <title></title>
     <style>
         body {
-/*            background-color: dimgrey;*/
+            /*            background-color: dimgrey;*/
             margin: 0;
             padding: 0;
 
@@ -35,7 +35,8 @@
 
             /*            width: 2vh;*/
         }
-        .f0{
+
+        .f0 {
             background-color: #d07272;
 
         }
@@ -75,16 +76,26 @@
 
         }
 
+        /*
+
         input{
             margin: 1vh 0vh 1vh 20vh;
-/*            height: 98vh;*/
+            height: 98vh;
             font-size:   20vh;
             width: calc(98vw - 20vh);
             background: none;
-/*            border: none;*/
+            border: none;
             color: dimgray;
              -webkit-text-stroke-width: 1px;
            -webkit-text-stroke-color: white;
+
+        }
+*/
+
+
+        #key {
+            margin-left: 25vh;
+            /*            display: block;    */
 
         }
     </style>
@@ -202,7 +213,20 @@
 
     </div>
 
-    <input type="text" name="fname">
+
+    <select id="key">
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="E">E</option>
+    </select>
+
+    <select>
+        <option value="Major">Dur</option>
+        <option value="Minor">Mol</option>
+
+    </select>
+
+    <!--    <input type="text" name="fname">-->
 
 
 
@@ -211,12 +235,15 @@
         let remainingFretBoardLength = 192;
         let fretDist = (remainingFretBoardLength / fretConst).toFixed(2);
         let gridTemplateRowsString = "2vh";
-        const nodesArr = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "H"]
+        const nodesArr = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "H","C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "H"];
+        const majorScale = [2, 2, 1, 2, 2, 2, 1];
 
         window.onload = startScript;
 
         function startScript() {
-
+            document.querySelectorAll("select").forEach(i => {
+                i.addEventListener("change", selectEVT);
+            });
 
             document.querySelectorAll(".position").forEach(i => {
                 var fingerDot = document.createElement("DIV");
@@ -229,12 +256,34 @@
             });
 
             ///////////////////////////////////////////////////////////////////////////
-            displayNodes(["C","E","G"]);
-
+            // displayNodes(["C", "E", "G"]);
+            makeScaleArray("C#","ma");
             ///////////////////////////////////////////////////////////////////////////
             claculateFretDist();
             document.querySelector("#fret_board").style.gridTemplateRows = gridTemplateRowsString;
             //console.log(gridTemplateRowsString);
+        }
+
+        function selectEVT(evt) {
+
+            console.log(this.options[this.selectedIndex].text);
+        }
+
+        function makeScaleArray(key,scale){
+
+            let firstNote = nodesArr.indexOf(key);
+            let returnArr = [key];
+//            console.log("makeScaleArray " + nodesArr.indexOf(arr[0])) ;
+//
+
+            for (let i = 0; i < 6; i++){
+                firstNote += majorScale[i];
+                returnArr.push(nodesArr[firstNote]);
+
+            }
+
+            console.log(returnArr);
+            displayNodes(returnArr);
         }
 
         function displayNodes(arr) {
